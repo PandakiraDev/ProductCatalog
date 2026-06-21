@@ -48,3 +48,17 @@ Join our community of developers creating universal apps.
 
 - [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
 - [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+
+## Zmienne środowiskowe
+
+Projekt korzysta ze zmiennych środowiskowych do konfiguracji adresu API. Przed pierwszym uruchomieniem skopiuj plik `.env.example` do `.env`:
+
+```bash
+cp .env.example .env
+```
+
+| Zmienna               | Opis                              | Wymagana | Przykładowa wartość        |
+| --------------------- | --------------------------------- | :------: | -------------------------- |
+| `EXPO_PUBLIC_API_URL` | Bazowy adres URL API z produktami |    ✅    | `https://fakestoreapi.com` |
+
+> **Uwaga:** Zmienne dostępne w kodzie aplikacji muszą mieć prefiks `EXPO_PUBLIC_` — to wymóg Expo. Po edycji pliku `.env` zrestartuj serwer Metro, aby zmiany zostały wczytane.

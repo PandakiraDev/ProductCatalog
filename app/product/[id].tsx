@@ -5,15 +5,17 @@ import {
   TouchableOpacity,
   StyleSheet,
 } from "react-native";
-import { Stack, useLocalSearchParams } from "expo-router";
+import { useLocalSearchParams } from "expo-router";
 import { useProduct } from "@/features/products/api/queries";
 import { Loading } from "@/components/Loading";
 import { ErrorView } from "@/components/ErrorView";
+import { useCart } from "@/features/cart/store/CartContext";
 
 export default function ProductDetailsScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
   const productId = Number(id);
   const { data: product, isLoading, isError, refetch } = useProduct(productId);
+  const { addToCart } = useCart();
 
   if (isLoading) return <Loading />;
   if (isError || !product) {
@@ -36,9 +38,7 @@ export default function ProductDetailsScreen() {
 
       <TouchableOpacity
         style={styles.button}
-        onPress={() => {
-          /* koszyk w kroku 5 */
-        }}
+        onPress={() => addToCart(product)}
       >
         <Text style={styles.buttonText}>Dodaj do koszyka</Text>
       </TouchableOpacity>
